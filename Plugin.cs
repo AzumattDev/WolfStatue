@@ -34,12 +34,14 @@ namespace WolfStatue
 
             
             BuildPiece statue = new("wolfstatue", "Wolf_Statue");
-
             statue.Name
                 .English("Wolf Statue");
             statue.Description.English("Wolf Statue");
             statue.RequiredItems.Add("Stone", 20,
                 false);
+            SnapPointMaker.AddObjectForSnapPoints(statue.Prefab);
+            SnapPointMaker.ApplySnapPoints();
+            MaterialReplacer.RegisterGameObjectForShaderSwap(statue.Prefab, MaterialReplacer.ShaderType.RockShader);
 
             Assembly assembly = Assembly.GetExecutingAssembly();
             _harmony.PatchAll(assembly);
